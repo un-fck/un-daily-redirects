@@ -1,0 +1,16 @@
+.merger { position: relative; height: 470px; overflow: hidden; border: 1px solid #dce6ee; border-radius: 6px; background: radial-gradient(ellipse at center, #fff 15%, #edf3f9 100%); perspective: 1100px; }
+.orbit-guide { position: absolute; inset: 36px 16%; border: 1px solid #d4e3ef; border-radius: 50%; transform: rotateY(50deg); opacity: .7; }
+.drum { position: absolute; inset: 0; transform-style: preserve-3d; animation: revolve 4.6s cubic-bezier(.16,.6,.23,1) forwards; }
+.orbit-name { position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; backface-visibility: hidden; transform: rotateX(calc(var(--i) * 51.428571deg)) translateZ(175px); animation: gather 1.1s calc(4.3s + var(--i) * .035s) ease-in-out forwards; }
+.orbit-name span { max-width: 88%; text-align: center; font-size: clamp(15px, 1.8vw, 23px); color: #324f68; line-height: 1.35; padding: 8px 12px; background: #f4f8fc; border: 1px solid #d8e5ef; border-radius: 4px; }
+.orbit-name.selected span { color: #006f9e; border-color: #a8cedf; font-weight: 500; }
+.merged-brand { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; font-size: clamp(48px, 5vw, 70px); font-weight: 400; color: #172b45; letter-spacing: -.045em; opacity: 0; animation: reveal 1.2s 5.1s ease-out forwards; }
+.merged-brand strong { font-weight: 700; }
+.brand-line { width: 50px; height: 3px; background: #008bc3; }
+.stage-caption { position: absolute; bottom: 24px; inset-inline: 20px; text-align: center; font-size: 10px; letter-spacing: .05em; color: #52677d; }
+.is-paused *, .is-paused { animation-play-state: paused !important; }
+@keyframes revolve { from { transform: rotateX(-60deg); } to { transform: rotateX(411.428571deg); } }
+@keyframes gather { to { transform: rotateX(-411.428571deg) translateZ(0) scale(.25); opacity: 0; filter: blur(3px); } }
+@keyframes reveal { from { opacity: 0; transform: translateY(12px) scale(.94); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (max-width: 720px) { .merger { height: 340px; } .orbit-name span { font-size: 19px; } .merged-brand { font-size: 60px; } }
+@media (prefers-reduced-motion: reduce) { .drum { display: none; } .merged-brand { opacity: 1; } .orbit-guide { transform: none; } .animation-actions { display: none; } }

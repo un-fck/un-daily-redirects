@@ -1,0 +1,40 @@
+{
+  "disclaimer": "Un projet indépendant d’UNFCK, le Cadre des Nations Unies pour la collaboration et la bienveillance. Ce site n’est pas un site officiel de l’Organisation des Nations Unies.",
+  "concept": "Un concept pour une ONU connectée",
+  "eyebrow": "UNE EXPÉRIENCE UNIFIÉE",
+  "headline": "{product} fait désormais partie de UN Daily.",
+  "genericHeadline": "Un nouveau point de départ pour votre journée à l’ONU.",
+  "mandates": "7 mandats.",
+  "website": "1 site intégré.",
+  "intro": "Réunions, documents, personnes et prises de parole. Tout est réuni au même endroit.",
+  "continue": "Continuer vers UN Daily",
+  "stay": "Rester ici",
+  "paused": "Redirection automatique arrêtée. Explorez à votre rythme.",
+  "countdown": "Redirection vers UN Daily dans {seconds} s",
+  "language": "Langue",
+  "sources": "Sept services. Une destination commune.",
+  "contribution": "Les services réunis",
+  "official": "Consulter le service d’origine",
+  "planned": "Intégration prévue",
+  "replay": "Rejouer l’animation",
+  "footer": "Une démonstration indépendante d’une expérience plus intégrée.",
+  "pauseAnimation": "Mettre l’animation en pause",
+  "products": {
+    "journal": "Journal des Nations Unies",
+    "igov": "iGov",
+    "webtv": "UN Web TV",
+    "transcripts": "UN Transcripts",
+    "digitallibrary": "Bibliothèque numérique de l’ONU",
+    "ods": "Système de diffusion électronique des documents",
+    "bluebook": "Livre bleu"
+  },
+  "descriptions": {
+    "journal": "Le programme quotidien : réunions officielles, manifestations informelles et informations pratiques.",
+    "igov": "Des informations structurées sur les réunions, les ordres du jour, les documents associés et les décisions.",
+    "webtv": "Des retransmissions pour suivre les réunions en vidéo.",
+    "transcripts": "Des transcriptions interrogeables qui relient les prises de parole aux réunions.",
+    "digitallibrary": "Une collection documentaire élargie et des notices bibliographiques enrichies.",
+    "ods": "Le texte intégral accessible des documents officiels, à commencer par les résolutions.",
+    "bluebook": "Les délégations, leurs membres et leurs coordonnées."
+  }
+}

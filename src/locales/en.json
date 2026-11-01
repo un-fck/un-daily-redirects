@@ -1,0 +1,40 @@
+{
+  "disclaimer": "An independent project by UNFCK, the United Nations Framework for Collaboration and Kindness. Not an official United Nations website.",
+  "concept": "A concept for a connected UN",
+  "eyebrow": "ONE CONNECTED EXPERIENCE",
+  "headline": "{product} is now part of UN Daily.",
+  "genericHeadline": "A new home for your UN day.",
+  "mandates": "7 mandates.",
+  "website": "1 integrated website.",
+  "intro": "Meetings, documents, people and the words that connect them. Together in one place.",
+  "continue": "Continue to UN Daily",
+  "stay": "Stay here",
+  "paused": "Automatic redirect stopped. Explore at your own pace.",
+  "countdown": "Continuing to UN Daily in {seconds} s",
+  "language": "Language",
+  "sources": "Seven services. A shared destination.",
+  "contribution": "What it brings together",
+  "official": "Visit the original service",
+  "planned": "Planned integration",
+  "replay": "Replay animation",
+  "footer": "An independent demonstration of a more connected experience.",
+  "pauseAnimation": "Pause animation",
+  "products": {
+    "journal": "UN Journal",
+    "igov": "iGov",
+    "webtv": "UN Web TV",
+    "transcripts": "UN Transcripts",
+    "digitallibrary": "UN Digital Library",
+    "ods": "Official Document System",
+    "bluebook": "Blue Book"
+  },
+  "descriptions": {
+    "journal": "The daily programme: formal meetings, informal events and practical information.",
+    "igov": "Structured meeting information, agendas, linked documents and decisions.",
+    "webtv": "Webcasts that bring the meeting into view.",
+    "transcripts": "Searchable transcripts that connect the spoken word to the meeting.",
+    "digitallibrary": "A wider document collection and richer bibliographic records.",
+    "ods": "Accessible full texts of official documents, starting with resolutions.",
+    "bluebook": "Delegations, their members and contact information."
+  }
+}
