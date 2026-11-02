@@ -12,5 +12,5 @@
 @keyframes revolve { from { transform: rotateX(-60deg); } to { transform: rotateX(411.428571deg); } }
 @keyframes gather { to { transform: rotateX(-411.428571deg) translateZ(0) scale(.25); opacity: 0; filter: blur(3px); } }
 @keyframes reveal { from { opacity: 0; transform: translateY(12px) scale(.94); } to { opacity: 1; transform: translateY(0) scale(1); } }
-@media (max-width: 720px) { .merger { height: 340px; } .orbit-name span { font-size: 19px; } .merged-brand { font-size: 60px; } }
+@media (max-width: 720px) { .merger { height: clamp(220px, 42svh, 340px); } .orbit-name span { font-size: 19px; } .merged-brand { font-size: 60px; } }
 @media (prefers-reduced-motion: reduce) { .drum { display: none; } .merged-brand { opacity: 1; } .orbit-guide { transform: none; } .animation-actions { display: none; } }
