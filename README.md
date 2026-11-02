@@ -1,7 +1,7 @@
 # UNFCK redirects
 
 An independent, unofficial demonstration connecting seven shadow domains to
-https://daily.unfck.org. No official emblems, analytics, authentication or backend.
+https://daily.unfck.org/about. No official emblems, analytics, authentication or backend.
 
 ## Development
 
@@ -25,25 +25,22 @@ Local previews:
 - `http://localhost:5174/?site=ods`
 - `http://localhost:5174/?site=bluebook`
 
-Add `&lang=fr` (or `en`, `es`, `ru`, `zh`, `ar`). Language selection prefers the
-query, then a language prefix in the path, then browser preferences, then English.
-The product override only works on loopback hosts. Unrecognised production hosts
-show a generic concept page with manual navigation, so a Vercel preview won't
-silently send reviewers away.
+The site is English only. `?site=` overrides only work on loopback hosts.
+Unknown hosts, including Vercel preview URLs, show a generic UN Daily headline
+and the same animation. Paths and query parameters never alter the destination.
 
 ## Behaviour
 
-Recognised hosts show the corresponding product headline, a vertical name carousel
-merging into UN Daily, and an eight-second countdown. Every redirect goes to the
-fixed Daily homepage. Paths and query parameters are deliberately not forwarded.
+Each recognised host shows its product headline, the exact independent-project
+disclaimer, an unframed full-page animation and “7 mandates. 1 integrated website.”
+The seven product names revolve vertically, converge, and give way to UN Daily.
+There are no controls, language picker, countdown, source overview or footer.
 
-“Stay here” cancels navigation and pauses animation. Replay cancels navigation and
-starts the animation again. Selecting a language cancels navigation. Hiding the
-tab cancels navigation; a tab opened in the background starts cancelled. A fixed
-“Stay here” control stays in reach on narrow screens during the countdown. Reduced-motion preferences show a static final frame.
-The countdown is separate from the animation and still runs with reduced motion;
-“Stay here” remains available. The progress indicator is static in reduced motion.
-Digital Library and ODS explicitly carry a planned-integration label.
+One eight-second CSS timeline drives the rotation, merge, reveal and final hold.
+Its root `animationend` event navigates to **https://daily.unfck.org/about**.
+There is no independent JavaScript redirect timer. Reduced-motion preferences
+show the final UN Daily frame without movement, hold it for 1.5 seconds on the
+same completion mechanism, then redirect. Generic preview hosts also redirect.
 
 ## Checks
 
@@ -53,10 +50,10 @@ npm run typecheck
 npm run build
 ```
 
-The unit checks cover all seven host mappings, hostile lookalikes, loopback-only
-previews, complete locale keys and product records, language precedence including
-inherited-object-property attacks, the exact English disclaimer, and the eight-
-second deadline. They do not grade translation quality or visual appearance.
+Tests cover all seven exact host mappings and hostile lookalikes, loopback-only
+previews, English-only output with the exact disclaimer and headline, absence of
+controls, the fixed about destination, and navigation only from the root animation
+completion event. Visual timing and choreography require browser inspection.
 
 ## Vercel setup
 
@@ -82,7 +79,7 @@ exclude indexing. No deployment or remote repository is created by this setup.
 
 ## Future links to specific pages — proposals only
 
-No source-path resolver is implemented. The safe fallback remains the Daily home.
+No source-path resolver is implemented. The safe fallback remains the Daily about page.
 Only add mappings after Daily exposes a stable destination route and unmatched
 identifiers have an explicit fallback.
 
