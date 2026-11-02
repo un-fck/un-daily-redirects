@@ -2,9 +2,9 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 import { App } from './app';
-import { disclaimer, headline } from './copy';
+import { headline } from './copy';
 import { Merger } from './merger';
-import { products, productNames, productFromHost, resolveProduct } from './products';
+import { products, productHosts, productFromHost, resolveProduct } from './products';
 import { animationDurationMs, reducedMotionDurationMs, completionDestination, destination } from './redirect';
 describe('seven exact shadow hosts', () => {
   it.each(products)('recognizes %s without forwarding paths or accepting a lookalike', product => {
@@ -22,18 +22,21 @@ describe('seven exact shadow hosts', () => {
   });
 });
 describe('English-only minimal output', () => {
-  it('preserves the exact disclaimer', () => {
-    expect(disclaimer).toBe('An independent project by UNFCK, the United Nations Framework for Collaboration and Kindness. Not an official United Nations website.');
-  });
-  it('renders all seven names and the correct headline, with no controls or overview', () => {
+  it('renders all seven official hostnames and the correct headline, with no disclaimer or controls', () => {
+    expect(productHosts).toEqual({
+      journal: 'journal.un.org', igov: 'igov.un.org', webtv: 'webtv.un.org',
+      transcripts: 'transcripts.un.org', digitallibrary: 'digitallibrary.un.org',
+      ods: 'documents.un.org', bluebook: 'bluebook.e-delegate.un.org',
+    });
     for (const product of products) {
       const markup = renderToStaticMarkup(createElement(App, { product }));
       expect(markup).toContain('lang="en"');
       expect(markup).toContain(headline(product));
-      expect(markup).toContain(disclaimer);
+      expect(markup).not.toMatch(/disclaimer|independent project|not an official/i);
       expect(markup).toContain('7 mandates.');
       expect(markup).toContain('1 integrated website.');
-      for (const name of Object.values(productNames)) expect(markup).toContain(name);
+      for (const host of Object.values(productHosts)) expect(markup).toContain(`<span>${host}</span>`);
+      expect(markup).toContain('<div class="merged-brand"><div class="brand-name"><strong>UN</strong><span>Daily</span></div><p class="slogan">');
       expect(markup).not.toMatch(/<(button|select|input|footer|a)(?:\s|>)/);
     }
   });

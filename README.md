@@ -31,18 +31,41 @@ and the same animation. Paths and query parameters never alter the destination.
 
 ## Behaviour
 
-Each recognised host shows its product headline, the exact independent-project
-disclaimer, an unframed full-page animation and “7 mandates. 1 integrated website.”
-The current product starts alone, then unfolds into a seven-line list. Fine
-connecting lines gather the services into UN Daily, which holds for 3.5 seconds.
+Each recognised host shows its product headline and an unframed full-page animation.
+The current product's official hostname starts alone, then unfolds into a seven-line
+list of official hostnames. The services converge into a large
+UN Daily wordmark, which holds for 3.5 seconds. Only after the wordmark is fully
+revealed does “7 mandates. 1 integrated website.” fade in directly beneath it.
+There is no disclaimer in the page or its no-JavaScript fallback.
 There are no controls, language picker, countdown, source overview or footer.
 
 One 12.5-second CSS timeline drives the introduction, unfolding, convergence,
 reveal and final hold.
+The wordmark is fully visible at 9 seconds (72%); the slogan fades in from 9 to
+9.5 seconds (72–76%). Both remain until navigation at 12.5 seconds.
 Its root `animationend` event navigates to **https://daily.unfck.org/about**.
 There is no independent JavaScript redirect timer. Reduced-motion preferences
-show the final UN Daily frame without movement, hold it for 3.5 seconds on the
+show the final UN Daily frame and slogan without movement, hold it for 3.5 seconds on the
 same completion mechanism, then redirect. Generic preview hosts also redirect.
+
+Animation labels use the official website hostnames; incoming shadow-host routing
+is unchanged:
+
+| Source | Animation hostname |
+| --- | --- |
+| Journal | `journal.un.org` |
+| iGov | `igov.un.org` |
+| Web TV | `webtv.un.org` |
+| Transcripts | `transcripts.un.org` |
+| Digital Library | `digitallibrary.un.org` |
+| ODS | `documents.un.org` |
+| Blue Book | `bluebook.e-delegate.un.org` |
+
+iGov's hostname is documented by [DGACM](https://www.un.org/dgacm/en/node/5433).
+The [official Blue Book page](https://www.un.org/dgacm/en/content/protocol/blue-book)
+links to `https://bluebook.unmeetings.org/`, which redirects to
+`https://bluebook.e-delegate.un.org:443/` (verified 1 November 2026). This matches
+Daily's existing Blue Book source. The final brand remains UN Daily, without a URL.
 
 ## Checks
 
@@ -53,9 +76,10 @@ npm run build
 ```
 
 Tests cover all seven exact host mappings and hostile lookalikes, loopback-only
-previews, English-only output with the exact disclaimer and headline, absence of
-controls, the fixed about destination, and navigation only from the root animation
-completion event. Visual timing and choreography require browser inspection.
+previews, English-only output with the official hostnames and product headline,
+absence of a disclaimer and controls, the slogan beneath UN Daily, the fixed about
+destination, and navigation only from the root animation completion event. Visual
+timing and choreography require browser inspection.
 
 ## Vercel setup
 

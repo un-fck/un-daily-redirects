@@ -5,6 +5,11 @@ export const productNames: Record<Product, string> = {
   transcripts: 'UN Transcripts', digitallibrary: 'UN Digital Library',
   ods: 'Official Document System', bluebook: 'Blue Book',
 };
+export const productHosts: Record<Product, string> = {
+  journal: 'journal.un.org', igov: 'igov.un.org', webtv: 'webtv.un.org',
+  transcripts: 'transcripts.un.org', digitallibrary: 'digitallibrary.un.org',
+  ods: 'documents.un.org', bluebook: 'bluebook.e-delegate.un.org',
+};
 export function productFromHost(host: string): Product | null {
   return products.find(product => host.toLowerCase() === `${product}.unfck.org`) ?? null;
 }
