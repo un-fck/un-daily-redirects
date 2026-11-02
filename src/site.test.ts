@@ -45,8 +45,8 @@ describe('single animation completion', () => {
     expect(completionDestination('settled', true)).toBe(destination);
     expect(completionDestination('unite', false)).toBeNull();
     expect(completionDestination('anything-else', true)).toBeNull();
-    expect(animationDurationMs).toBe(8000);
-    expect(reducedMotionDurationMs).toBe(1500);
+    expect(animationDurationMs).toBe(12500);
+    expect(reducedMotionDurationMs).toBe(3500);
   });
   it('navigates from the completion handler and ignores child events', () => {
     const assign = vi.fn();

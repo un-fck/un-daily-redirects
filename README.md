@@ -33,13 +33,15 @@ and the same animation. Paths and query parameters never alter the destination.
 
 Each recognised host shows its product headline, the exact independent-project
 disclaimer, an unframed full-page animation and “7 mandates. 1 integrated website.”
-The seven product names revolve vertically, converge, and give way to UN Daily.
+The current product starts alone, then unfolds into a seven-line list. Fine
+connecting lines gather the services into UN Daily, which holds for 3.5 seconds.
 There are no controls, language picker, countdown, source overview or footer.
 
-One eight-second CSS timeline drives the rotation, merge, reveal and final hold.
+One 12.5-second CSS timeline drives the introduction, unfolding, convergence,
+reveal and final hold.
 Its root `animationend` event navigates to **https://daily.unfck.org/about**.
 There is no independent JavaScript redirect timer. Reduced-motion preferences
-show the final UN Daily frame without movement, hold it for 1.5 seconds on the
+show the final UN Daily frame without movement, hold it for 3.5 seconds on the
 same completion mechanism, then redirect. Generic preview hosts also redirect.
 
 ## Checks
