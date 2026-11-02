@@ -6,6 +6,13 @@ import { headline } from './copy';
 import { Merger } from './merger';
 import { products, productHosts, productFromHost, resolveProduct } from './products';
 import { animationDurationMs, reducedMotionDurationMs, completionDestination, destination } from './redirect';
+import html from '../index.html?raw';
+
+const officialHosts = [
+  'journal.un.org', 'igov.un.org', 'webtv.un.org', 'transcripts.un.org',
+  'digitallibrary.un.org', 'documents.un.org', 'bluebook.e-delegate.un.org',
+  'e-speakers.e-delegate.un.org',
+];
 describe('seven exact shadow hosts', () => {
   it.each(products)('recognizes %s without forwarding paths or accepting a lookalike', product => {
     expect(productFromHost(`${product}.unfck.org`)).toBe(product);
@@ -20,30 +27,53 @@ describe('seven exact shadow hosts', () => {
     expect(resolveProduct(new URL('https://preview.vercel.app/?site=journal'))).toBeNull();
     expect(resolveProduct(new URL('http://localhost:5174/?site=unknown'))).toBeNull();
   });
+  it('keeps e-Speakers display-only without inventing another incoming host', () => {
+    expect(productFromHost('espeakers.unfck.org')).toBeNull();
+    expect(productFromHost('e-speakers.unfck.org')).toBeNull();
+    expect(resolveProduct(new URL('http://localhost:5174/?site=espeakers'))).toBeNull();
+  });
 });
 describe('English-only minimal output', () => {
-  it('renders all seven official hostnames and the correct headline, with no disclaimer or controls', () => {
+  it.each([...products, null])('renders eight official hostnames for %s, with no disclaimer or controls', product => {
     expect(productHosts).toEqual({
       journal: 'journal.un.org', igov: 'igov.un.org', webtv: 'webtv.un.org',
       transcripts: 'transcripts.un.org', digitallibrary: 'digitallibrary.un.org',
       ods: 'documents.un.org', bluebook: 'bluebook.e-delegate.un.org',
     });
-    for (const product of products) {
-      const markup = renderToStaticMarkup(createElement(App, { product }));
-      expect(markup).toContain('lang="en"');
-      expect(markup).toContain(headline(product));
-      expect(markup).not.toMatch(/disclaimer|independent project|not an official/i);
-      expect(markup).toContain('7 mandates.');
-      expect(markup).toContain('1 integrated website.');
-      for (const host of Object.values(productHosts)) expect(markup).toContain(`<span>${host}</span>`);
-      expect(markup).toContain('<div class="merged-brand"><div class="brand-name"><strong>UN</strong><span>Daily</span></div><p class="slogan">');
-      expect(markup).not.toMatch(/<(button|select|input|footer|a)(?:\s|>)/);
-    }
+    const markup = renderToStaticMarkup(createElement(App, { product }));
+    expect(markup).toContain('lang="en"');
+    expect(markup).toContain(headline(product));
+    expect(markup).not.toMatch(/disclaimer|independent project|not an official/i);
+    expect(markup).toContain('<p class="sr-only">8 mandates. 1 integrated website.</p>');
+    expect(markup).toContain('<span>8 mandates.</span>');
+    expect(markup).not.toContain('7 mandates.');
+    expect(markup).toContain('1 integrated website.');
+    for (const host of officialHosts) expect(markup).toContain(`<span>${host}</span>`);
+    expect(markup.match(/class="source-product/g)).toHaveLength(8);
+    expect(markup).toContain('<div class="merged-brand"><div class="brand-name"><strong>UN</strong><span>Daily</span></div><p class="slogan">');
+    expect(markup).not.toMatch(/<(button|select|input|footer|a)(?:\s|>)/);
+  });
+  it.each([...products, null])('centres all eight rows around the origin for %s', product => {
+    const markup = renderToStaticMarkup(createElement(Merger, { selected: product }));
+    const slots = [...markup.matchAll(/style="--slot:([^;]+);/g)].map(match => Number(match[1]));
+    expect(slots).toEqual([-3.5, -2.5, -1.5, -.5, .5, 1.5, 2.5, 3.5]);
+    expect(markup).toContain('--source-count:8');
+    const origin = product ? slots[products.indexOf(product)] : 0;
+    expect(markup).toContain(`--origin-slot:${origin}`);
+  });
+});
+describe('no-JavaScript fallback', () => {
+  it('uses the same fixed destination without controls or a disclaimer', () => {
+    const head = html.match(/<head>([\s\S]*?)<\/head>/)?.[1];
+    expect(head).toContain(`<noscript><meta http-equiv="refresh" content="0;url=${destination}"`);
+    expect(html).toContain('Eight mandates');
+    expect(html).toContain('UN Daily — 8 mandates. 1 integrated website.');
+    expect(html).not.toMatch(/Seven mandates|7 mandates|disclaimer|<(button|select|input|footer|a)(?:\s|>)/i);
   });
 });
 describe('single animation completion', () => {
   it('uses only the fixed about target after the full or reduced-motion timeline finishes', () => {
-    expect(destination).toBe('https://daily.unfck.org/about');
+    expect(destination).toBe('https://daily.un-two-zero.org/about');
     expect(completionDestination('unite', true)).toBe(destination);
     expect(completionDestination('settled', true)).toBe(destination);
     expect(completionDestination('unite', false)).toBeNull();

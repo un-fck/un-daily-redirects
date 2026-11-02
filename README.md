@@ -1,7 +1,8 @@
 # UNFCK redirects
 
 An independent, unofficial demonstration connecting seven shadow domains to
-https://daily.unfck.org/about. No official emblems, analytics, authentication or backend.
+https://daily.un-two-zero.org/about through an animation of eight services.
+No official emblems, analytics, authentication or backend.
 
 ## Development
 
@@ -32,21 +33,26 @@ and the same animation. Paths and query parameters never alter the destination.
 ## Behaviour
 
 Each recognised host shows its product headline and an unframed full-page animation.
-The current product's official hostname starts alone, then unfolds into a seven-line
+The current product's official hostname starts alone, then unfolds into an eight-line
 list of official hostnames. The services converge into a large
 UN Daily wordmark, which holds for 3.5 seconds. Only after the wordmark is fully
-revealed does “7 mandates. 1 integrated website.” fade in directly beneath it.
+revealed does “8 mandates. 1 integrated website.” fade in directly beneath it.
 There is no disclaimer in the page or its no-JavaScript fallback.
 There are no controls, language picker, countdown, source overview or footer.
 
 One 12.5-second CSS timeline drives the introduction, unfolding, convergence,
 reveal and final hold.
+Eight rows are centred around their midpoint with a 38–50px responsive gap and
+space for one additional row of padding. The existing easing curves and timing
+remain unchanged; all eight labels are fully visible before convergence begins.
 The wordmark is fully visible at 9 seconds (72%); the slogan fades in from 9 to
 9.5 seconds (72–76%). Both remain until navigation at 12.5 seconds.
-Its root `animationend` event navigates to **https://daily.unfck.org/about**.
+Its root `animationend` event navigates to **https://daily.un-two-zero.org/about**.
 There is no independent JavaScript redirect timer. Reduced-motion preferences
 show the final UN Daily frame and slogan without movement, hold it for 3.5 seconds on the
 same completion mechanism, then redirect. Generic preview hosts also redirect.
+With JavaScript disabled, a `noscript` meta refresh navigates directly to the same
+fixed destination without showing controls or a disclaimer.
 
 Animation labels use the official website hostnames; incoming shadow-host routing
 is unchanged:
@@ -60,6 +66,10 @@ is unchanged:
 | Digital Library | `digitallibrary.un.org` |
 | ODS | `documents.un.org` |
 | Blue Book | `bluebook.e-delegate.un.org` |
+| e-Speakers (display only) | `e-speakers.e-delegate.un.org` |
+
+e-Speakers appears in every animation but has no incoming shadow-host mapping or
+`?site=` override. The seven existing host mappings and local previews are unchanged.
 
 iGov's hostname is documented by [DGACM](https://www.un.org/dgacm/en/node/5433).
 The [official Blue Book page](https://www.un.org/dgacm/en/content/protocol/blue-book)
@@ -76,9 +86,10 @@ npm run build
 ```
 
 Tests cover all seven exact host mappings and hostile lookalikes, loopback-only
-previews, English-only output with the official hostnames and product headline,
+previews, English-only output with all eight official hostnames and product headline,
 absence of a disclaimer and controls, the slogan beneath UN Daily, the fixed about
-destination, and navigation only from the root animation completion event. Visual
+destination in runtime and no-JavaScript output, centred eight-row placement,
+and runtime navigation only from the root animation completion event. Visual
 timing and choreography require browser inspection.
 
 ## Vercel setup

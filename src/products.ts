@@ -10,6 +10,8 @@ export const productHosts: Record<Product, string> = {
   transcripts: 'transcripts.un.org', digitallibrary: 'digitallibrary.un.org',
   ods: 'documents.un.org', bluebook: 'bluebook.e-delegate.un.org',
 };
+// e-Speakers participates in the animation without adding an incoming shadow host.
+export const animationHosts = [...products.map(product => productHosts[product]), 'e-speakers.e-delegate.un.org'];
 export function productFromHost(host: string): Product | null {
   return products.find(product => host.toLowerCase() === `${product}.unfck.org`) ?? null;
 }

@@ -1,4 +1,4 @@
-export const destination = 'https://daily.unfck.org/about';
+export const destination = 'https://daily.un-two-zero.org/about';
 export const animationDurationMs = 12500;
 export const reducedMotionDurationMs = 3500;
 /** Only the single showcase timeline can complete navigation, never a bubbled child event. */
